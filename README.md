@@ -217,5 +217,6 @@
 # Getting started
 gcloud auth application-default revoke
 gcloud revoke --all
-gcloud init
+gcloud auth login
+gcloud config set project <project_id>
 gcloud auth application-default login
