@@ -211,3 +211,12 @@
 
 # [Helm Masterclass: 50 Practical Demos for Kubernetes DevOps](https://links.stacksimplify.com/helm-masterclass-kubernetes-devops)
 [![Image](images/helm-highest-rated.png "Helm Masterclass: 50 Practical Demos for Kubernetes DevOps")](https://links.stacksimplify.com/helm-masterclass-kubernetes-devops)
+
+
+
+# Getting started
+gcloud auth application-default revoke
+gcloud auth list
+gcloud revoke ...
+gcloud init
+gcloud auth application-default login
