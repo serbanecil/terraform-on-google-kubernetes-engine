@@ -216,7 +216,6 @@
 
 # Getting started
 gcloud auth application-default revoke
-gcloud auth list
-gcloud revoke ...
+gcloud revoke --all
 gcloud init
 gcloud auth application-default login
