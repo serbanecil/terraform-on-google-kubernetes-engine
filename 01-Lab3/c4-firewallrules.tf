@@ -30,7 +30,7 @@ resource "google_compute_firewall" "custom_fw" {
     ports    = ["22"]
   }
 
-  source_ranges = [var.subnet_asia_cidr, var.subnet_eu_cidr]
+  source_ranges = [var.subnet_1_cidr, var.subnet_2_cidr]
 
   target_tags = [local.custom_ssh_tag]
 }

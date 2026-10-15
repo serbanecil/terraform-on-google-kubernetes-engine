@@ -3,16 +3,16 @@ resource "google_compute_network" "mynetwork" {
   auto_create_subnetworks = false
 }
 
-resource "google_compute_subnetwork" "subnet_asia" {
-  region        = "asia-east1"
+resource "google_compute_subnetwork" "subnet_1" {
+  region        = "us-west1"
   network       = google_compute_network.mynetwork.id
-  ip_cidr_range = var.subnet_asia_cidr
-  name          = "subnet-asia"
+  ip_cidr_range = var.subnet_1_cidr
+  name          = "subnet-1"
 }
 
-resource "google_compute_subnetwork" "subnet_eu" {
-  region        = "europe-west1"
+resource "google_compute_subnetwork" "subnet_2" {
+  region        = "us-west1"
   network       = google_compute_network.mynetwork.id
-  ip_cidr_range = var.subnet_eu_cidr
-  name          = "subnet-eu"
+  ip_cidr_range = var.subnet_2_cidr
+  name          = "subnet-2"
 }
