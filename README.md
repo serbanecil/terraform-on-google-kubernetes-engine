@@ -218,5 +218,6 @@
 gcloud auth application-default revoke
 gcloud revoke --all
 gcloud auth login
+gcloud projects list
 gcloud config set project <project_id>
 gcloud auth application-default login
