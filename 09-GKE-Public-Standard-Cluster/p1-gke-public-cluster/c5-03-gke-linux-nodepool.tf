@@ -4,14 +4,17 @@ resource "google_container_node_pool" "nodepool_1" {
   location   = var.gcp_region1
   cluster    = google_container_cluster.gke_cluster.name
   node_count = 1
+  node_locations = [ "${var.gcp_region1}-a" ]
   node_config {
+    disk_size_gb = 16
     preemptible  = true
     machine_type = var.machine_type
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = google_service_account.gke_sa.email
+    service_account = "522524444401-compute@developer.gserviceaccount.com"
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
     tags = [tolist(google_compute_firewall.fw_ssh.target_tags)[0]]
+
   }
 }

@@ -44,6 +44,12 @@ kubectl version
   - **Expire noncurrent versions after:** 365
 - Click on **CREATE**  
 
+### Step-03-01: Alternative: Create the bucket using the gcloud cli
+``` bash
+gcloud storage buckets create gs://terraform-on-gcp-kk-udemy --location=US --uniform-bucket-level-access
+gcloud storage buckets update gs://terraform-on-gcp-kk-udemy --versioning
+```
+
 ### Step-03-02: c1-versions.tf and Remote Backend
 - [Terraform Remote Backend Configuration](https://developer.hashicorp.com/terraform/language/settings/backends/configuration)
 ```hcl
