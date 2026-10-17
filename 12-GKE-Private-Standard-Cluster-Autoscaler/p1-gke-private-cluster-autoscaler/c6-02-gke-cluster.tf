@@ -3,8 +3,7 @@ resource "google_container_cluster" "gke_cluster" {
   name     = "${local.name}-gke-cluster"
   location = var.gcp_region1
   
-  # Node Locations: Get from Datasource: google_compute_zones
-  node_locations = data.google_compute_zones.available.names
+  node_locations = [ "${var.gcp_region1}-a" ]
 
   # Create the smallest possible default node pool and immediately delete it.
   remove_default_node_pool = true
@@ -16,6 +15,11 @@ resource "google_container_cluster" "gke_cluster" {
 
   # In production, change it to true (Enable it to avoid accidental deletion)
   deletion_protection = false
+
+  node_config {
+    disk_size_gb = 16
+    preemptible  = true
+  }
 
   # Private Cluster Configurations
   private_cluster_config {
@@ -36,7 +40,7 @@ resource "google_container_cluster" "gke_cluster" {
   master_authorized_networks_config {
     cidr_blocks {
       cidr_block = "0.0.0.0/0"
-      display_name = "entire-internet"
+      display_name = "entire internet"
     }
   }
 }

@@ -3,6 +3,20 @@ title: GCP Google Kubernetes Engine GKE - Standard Private Cluster
 description: Learn to deploy GCP GKE standard private cluster using Terraform
 ---
 
+### Step-001: Create the bucket using the gcloud cli
+``` bash
+# 1. Create the bucket: name, region, default class, uniform access, public access prevention.
+#    Soft delete is left at its default (7 days), so no flag is needed for it.
+gcloud storage buckets create gs://terraform-on-gcp-gke-kk \
+  --location=us-central1 \
+  --default-storage-class=STANDARD \
+  --uniform-bucket-level-access \
+  --public-access-prevention
+
+# 2. Turn on object versioning
+gcloud storage buckets update gs://terraform-on-gcp-gke-kk --versioning
+```
+
 ## Step-01: Introduction
 1. Create Terraform configs for GKE standard private cluster
 2. Configure Cluster Autoscaler (Nodepool autosclaing)

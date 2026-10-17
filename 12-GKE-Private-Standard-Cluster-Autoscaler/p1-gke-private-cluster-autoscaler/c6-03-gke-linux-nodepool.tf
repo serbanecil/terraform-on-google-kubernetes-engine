@@ -13,13 +13,14 @@ resource "google_container_node_pool" "linux_nodepool_1" {
     preemptible  = true
     machine_type = var.machine_type
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = google_service_account.gke_sa.email
+    service_account = local.service_account_email
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
     tags = [tolist(google_compute_firewall.fw_ssh.target_tags)[0]]
-    disk_size_gb = 20
+    disk_size_gb = 16
     disk_type = "pd-standard" # Supported pd-standard, pd-balanced or pd-ssd, default is pd-standard    
   }
+  node_locations = [ "${var.gcp_region1}-a" ]
 }
 

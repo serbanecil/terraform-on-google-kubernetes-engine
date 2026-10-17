@@ -8,4 +8,5 @@ locals {
     owners = local.owners
     environment = local.environment
   }
+  service_account_email = "48964226948-compute@developer.gserviceaccount.com"
 } 
