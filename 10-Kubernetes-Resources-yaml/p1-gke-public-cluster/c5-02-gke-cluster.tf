@@ -8,6 +8,14 @@ resource "google_container_cluster" "gke_cluster" {
   # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
+
+  node_locations = [ "${var.gcp_region1}-a" ]
+  node_config {
+    disk_size_gb = 16
+    machine_type = var.machine_type
+    preemptible = true
+  }
+
   # Network
   network = google_compute_network.myvpc.self_link
   subnetwork = google_compute_subnetwork.mysubnet.self_link

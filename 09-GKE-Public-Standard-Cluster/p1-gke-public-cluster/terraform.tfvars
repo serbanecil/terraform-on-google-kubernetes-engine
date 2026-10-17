@@ -1,4 +1,4 @@
-gcp_project      = "kkgcplabs01-038"
+gcp_project      = "kkgcplabs01-031"
 gcp_region1      = "us-central1"
 machine_type     = "e2-medium"
 environment      = "dev"

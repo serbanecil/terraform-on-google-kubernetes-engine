@@ -8,8 +8,8 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "terraform-on-gcp-gke"
-    prefix = "dev/gke-cluster-public"    
+    bucket = "terraform-on-gcp-kk-udemy"
+    prefix = "dev/gke-cluster-public"
   }
 }
 
