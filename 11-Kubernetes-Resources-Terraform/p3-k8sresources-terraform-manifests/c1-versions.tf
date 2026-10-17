@@ -12,8 +12,8 @@ terraform {
     }      
   }
   backend "gcs" {
-    bucket = "terraform-on-gcp-gke"
-    prefix = "dev/k8s-demo1"    
-  }  
+    bucket = "terraform-on-gcp-kk-udemy"
+    prefix = "dev/k8s-demo1"
+  }
 }
 

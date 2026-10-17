@@ -14,6 +14,7 @@ resource "google_container_cluster" "gke_cluster" {
     disk_size_gb = 16
     machine_type = var.machine_type
     preemptible  = true
+    tags = [tolist(google_compute_firewall.fw_ssh.target_tags)[0]]
   }
 
   # Network
