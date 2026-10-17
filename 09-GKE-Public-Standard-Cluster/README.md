@@ -46,8 +46,33 @@ kubectl version
 
 ### Step-03-01: Alternative: Create the bucket using the gcloud cli
 ``` bash
-gcloud storage buckets create gs://terraform-on-gcp-kk-udemy --location=US --uniform-bucket-level-access
-gcloud storage buckets update gs://terraform-on-gcp-kk-udemy --versioning
+# 1. Create the bucket: name, region, default class, uniform access, public access prevention.
+#    Soft delete is left at its default (7 days), so no flag is needed for it.
+gcloud storage buckets create gs://terraform-on-gcp-gke \
+  --location=us-central1 \
+  --default-storage-class=STANDARD \
+  --uniform-bucket-level-access \
+  --public-access-prevention
+
+# 2. Turn on object versioning
+gcloud storage buckets update gs://terraform-on-gcp-gke --versioning
+
+# 3. Lifecycle rules: keep at most 90 noncurrent versions, and expire noncurrent versions after 365 days
+cat > lifecycle.json <<'EOF'
+{
+  "rule": [
+    {
+      "action": {"type": "Delete"},
+      "condition": {"isLive": false, "numNewerVersions": 90}
+    },
+    {
+      "action": {"type": "Delete"},
+      "condition": {"isLive": false, "daysSinceNoncurrentTime": 365}
+    }
+  ]
+}
+EOF
+gcloud storage buckets update gs://terraform-on-gcp-gke --lifecycle-file=lifecycle.json
 ```
 
 ### Step-03-02: c1-versions.tf and Remote Backend
