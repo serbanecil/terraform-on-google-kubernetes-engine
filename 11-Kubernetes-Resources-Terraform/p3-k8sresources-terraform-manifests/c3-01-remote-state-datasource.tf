@@ -2,11 +2,12 @@
 data "terraform_remote_state" "gke" {
   backend = "gcs"
   config = {
-    bucket = "terraform-on-gcp-gke"
+    bucket = "terraform-on-gcp-kk-udemy"
     prefix = "dev/gke-cluster-public"
-  }  
+  }
 }
 
+# Outputs
 output "p1_gke_cluster_name" {
   value = data.terraform_remote_state.gke.outputs.gke_cluster_name
 }

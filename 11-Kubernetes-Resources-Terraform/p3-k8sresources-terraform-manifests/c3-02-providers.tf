@@ -1,7 +1,7 @@
 # Provider: google
 provider "google" {
   project = var.gcp_project
-  region = var.gcp_region1
+  region  = var.gcp_region1
 }
 
 # GKE Datasource: GKE Cluster details
@@ -13,7 +13,7 @@ data "google_container_cluster" "gke" {
 output "gke_cluster_details" {
   value = {
     gke_endpoint = data.google_container_cluster.gke.endpoint
-    #gke_cluster_ca_certificate = data.google_container_cluster.gke.master_auth.0.cluster_ca_certificate
+    gke_cluster_ca_certificate = data.google_container_cluster.gke.master_auth.0.cluster_ca_certificate
   }
 }
 
@@ -29,7 +29,7 @@ provider "kubernetes" {
     api_version = "client.authentication.k8s.io/v1beta1"
     command     = "gke-gcloud-auth-plugin"
     # Additional Reference: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/using_gke_with_terraform#using-the-kubernetes-and-helm-providers
-  }  
+  }
 }
 
 
